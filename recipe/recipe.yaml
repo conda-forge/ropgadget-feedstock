@@ -37,8 +37,8 @@ tests:
 
 about:
   summary: This tool lets you search your gadgets on your binaries to facilitate your ROP exploitation.
-  license: BSD-2-Clause
-  license_file: LICENSE
+  license: BSD-3-Clause
+  license_file: LICENSE_BSD.txt
   homepage: https://github.com/JonathanSalwan/ROPgadget
 
 extra:
