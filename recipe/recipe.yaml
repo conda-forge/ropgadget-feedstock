@@ -34,6 +34,11 @@ tests:
       python_version:
         - ${{ python_min }}.*
         - '*'
+  - script:
+      - ROPgadget --version
+    requirements:
+      run:
+        - python ${{ python_min }}.*
 
 about:
   summary: This tool lets you search your gadgets on your binaries to facilitate your ROP exploitation.
