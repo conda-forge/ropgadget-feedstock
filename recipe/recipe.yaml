@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  version: '7.7'
+
+package:
+  name: ropgadget
+  version: ${{ version }}
+
+source:
+- url: https://files.pythonhosted.org/packages/source/r/ropgadget/ropgadget-${{ version }}.tar.gz
+  sha256: 8aa7db0ce48ae6b09707fecc40bdd88ee5f76afd64249885ef3c9feab5bd9cfb
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - capstone >=5.0.1
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - ropgadget
+        - ropgadget.loaders
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - '*'
+  - script:
+      - ROPgadget --version
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: This tool lets you search your gadgets on your binaries to facilitate your ROP exploitation.
+  license: BSD-3-Clause
+  license_file: LICENSE_BSD.txt
+  homepage: https://github.com/JonathanSalwan/ROPgadget
+
+extra:
+  recipe-maintainers:
+    - chrisburr
